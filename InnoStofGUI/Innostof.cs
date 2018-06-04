@@ -23,20 +23,21 @@ namespace InnoStofGUI {
 
         public Innostof() {
             InitializeComponent();
+            recordtimeLabel.Text = LoadRecord().ToTimeSpan().ToString();
             timeLabel.Text = "00:00:00";
         }
 
         private void powerbutton_Click(object sender, EventArgs e) {
-            if (powerbutton.Text == "Aan")
+            if (powerbutton.Text == "A A N")
             {
                 arduinocommands.sendCommand("on");
-                powerbutton.Text = "Uit";
+                powerbutton.Text = "U I T";
                 isActive = true;
                 activatedTime = DateTime.Now;
-            } else if (powerbutton.Text == "Uit")
+            } else if (powerbutton.Text == "U I T")
             {
                 arduinocommands.sendCommand("off");
-                powerbutton.Text = "Aan";
+                powerbutton.Text = "A A N";
                 isActive = false;
                 timeLabel.Text = "00:00:00";
                 SaveScore(elapsedTime);
@@ -90,6 +91,11 @@ namespace InnoStofGUI {
                 Debug.Print("Doesn't exist");
                 return new Record();
             } 
+        }
+
+        private void TitleLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
